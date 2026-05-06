@@ -1,34 +1,38 @@
 pipeline {
-    agent any
+    agent { label 'windows' }
 
     stages {
         stage('Inicio') {
             steps {
-                echo 'Iniciando pipeline de UFT Cross-Browser DevOps'
+                echo 'Iniciando pipeline en agente Windows para UFT'
+            }
+        }
+
+        stage('Validar agente Windows') {
+            steps {
+                bat 'echo Ejecutando desde agente Windows'
+                bat 'hostname'
+                bat 'java -version'
             }
         }
 
         stage('Validar workspace') {
             steps {
-                sh 'ls -la'
+                bat 'dir'
             }
         }
 
-        stage('Validar configuracion cross-browser') {
+        stage('Validar estructura del proyecto') {
             steps {
-                sh 'cat config/browsers.json'
-            }
-        }
-
-        stage('Validar Selenium Grid') {
-            steps {
-                sh 'sh scripts/check_grid.sh'
+                bat 'dir config'
+                bat 'dir scripts'
+                bat 'dir tests'
             }
         }
 
         stage('Finalizar') {
             steps {
-                echo 'Pipeline finalizado correctamente'
+                echo 'Pipeline ejecutado correctamente en Windows'
             }
         }
     }
