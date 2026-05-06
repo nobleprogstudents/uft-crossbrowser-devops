@@ -1,0 +1,6 @@
+{
+  "testsPath": "C:\\jenkins-agent\\uft-tests",
+  "resultsPath": "C:\\jenkins-agent\\uft-results",
+  "logsPath": "C:\\jenkins-agent\\uft-logs",
+  "browsers": ["chrome", "edge", "firefox"]
+}
