@@ -1,10 +1,19 @@
 pipeline {
     agent { label 'windows' }
 
+    parameters {
+        choice(
+            name: 'BROWSER',
+            choices: ['chrome', 'edge', 'firefox'],
+            description: 'Navegador objetivo para la ejecucion UFT'
+        )
+    }
+
     stages {
         stage('Inicio') {
             steps {
                 echo 'Iniciando pipeline en agente Windows para UFT'
+                echo "Navegador seleccionado: ${params.BROWSER}"
             }
         }
 
@@ -38,7 +47,7 @@ pipeline {
 
         stage('Ejecutar UFT') {
             steps {
-                bat 'scripts\\run_uft_test.bat'
+                bat "scripts\\run_uft_test.bat ${params.BROWSER}"
             }
         }
 

@@ -1,6 +1,12 @@
 @echo off
 setlocal
 
+set "BROWSER=%~1"
+
+if "%BROWSER%"=="" set "BROWSER=chrome"
+
+echo Navegador recibido desde Jenkins: %BROWSER%
+
 REM ============================================================
 REM Lanza la ejecución real de UFT mediante VBScript
 REM ============================================================
@@ -54,7 +60,7 @@ if not exist "%VBS_PATH%" (
 )
 
 REM Ejecutamos el VBS y guardamos salida en log.
-cscript //nologo "%VBS_PATH%" > "%LOG_PATH%" 2>&1
+cscript //nologo "%VBS_PATH%" "%BROWSER%" > "%LOG_PATH%" 2>&1
 
 REM Mostramos el log en Jenkins.
 type "%LOG_PATH%"

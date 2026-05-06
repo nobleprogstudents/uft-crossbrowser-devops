@@ -4,6 +4,16 @@
 
 Option Explicit
 
+Dim browserName
+
+If WScript.Arguments.Count > 0 Then
+    browserName = WScript.Arguments(0)
+Else
+    browserName = "chrome"
+End If
+
+WScript.Echo "Navegador solicitado: " & browserName
+
 ' Declaramos variables principales.
 Dim qtApp
 Dim qtTest
