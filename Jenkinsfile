@@ -14,17 +14,15 @@ pipeline {
             }
         }
 
-        stage('Validar estructura') {
+        stage('Validar configuracion cross-browser') {
             steps {
-                sh 'ls -la scripts'
-                sh 'ls -la config'
-                sh 'ls -la tests'
+                sh 'cat config/browsers.json'
             }
         }
 
-        stage('Ejecutar script base') {
+        stage('Validar Selenium Grid') {
             steps {
-                sh 'echo "Ejecutando prueba base desde Jenkins en contenedor Linux"'
+                sh 'sh scripts/check_grid.sh'
             }
         }
 
