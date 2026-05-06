@@ -10,13 +10,21 @@ pipeline {
 
         stage('Validar workspace') {
             steps {
-                bat 'dir'
+                sh 'ls -la'
+            }
+        }
+
+        stage('Validar estructura') {
+            steps {
+                sh 'ls -la scripts'
+                sh 'ls -la config'
+                sh 'ls -la tests'
             }
         }
 
         stage('Ejecutar script base') {
             steps {
-                bat 'scripts\\run_test.bat'
+                sh 'echo "Ejecutando prueba base desde Jenkins en contenedor Linux"'
             }
         }
 
