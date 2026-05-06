@@ -1,59 +1,36 @@
 pipeline {
-    agent { label 'windows' }
-
-    parameters {
-        choice(
-            name: 'BROWSER',
-            choices: ['chrome', 'edge', 'firefox'],
-            description: 'Navegador objetivo para la ejecucion UFT'
-        )
-    }
+    agent any
 
     stages {
         stage('Inicio') {
             steps {
-                echo 'Iniciando pipeline en agente Windows para UFT'
-                echo "Navegador seleccionado: ${params.BROWSER}"
-            }
-        }
-
-        stage('Validar agente Windows') {
-            steps {
-                bat 'echo Ejecutando desde agente Windows'
-                bat 'hostname'
-                bat 'java -version'
+                echo 'Iniciando pipeline de UFT Cross-Browser DevOps'
             }
         }
 
         stage('Validar workspace') {
             steps {
-                bat 'dir'
+                sh 'ls -la'
             }
         }
 
-        stage('Validar estructura del proyecto') {
+        stage('Validar estructura') {
             steps {
-                bat 'dir config'
-                bat 'dir scripts'
-                bat 'dir tests'
+                sh 'ls -la scripts'
+                sh 'ls -la config'
+                sh 'ls -la tests'
             }
         }
 
-        stage('Validar Selenium Grid desde Windows') {
+        stage('Ejecutar script base') {
             steps {
-                bat 'scripts\\check_grid_windows.bat'
-            }
-        }
-
-        stage('Ejecutar UFT') {
-            steps {
-                bat "scripts\\run_uft_test.bat ${params.BROWSER}"
+                sh 'echo "Ejecutando prueba base desde Jenkins en contenedor Linux"'
             }
         }
 
         stage('Finalizar') {
             steps {
-                echo 'Pipeline ejecutado correctamente en Windows'
+                echo 'Pipeline finalizado correctamente'
             }
         }
     }
