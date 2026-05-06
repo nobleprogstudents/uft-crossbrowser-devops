@@ -1,1 +1,20 @@
-{} 
+{
+  "gridUrl": "http://selenium-hub:4444/wd/hub",
+  "browsers": [
+    {
+      "name": "chrome",
+      "enabled": true,
+      "description": "Ejecución remota en nodo Chrome dentro de Selenium Grid"
+    },
+    {
+      "name": "MicrosoftEdge",
+      "enabled": true,
+      "description": "Ejecución remota en nodo Edge dentro de Selenium Grid"
+    },
+    {
+      "name": "firefox",
+      "enabled": true,
+      "description": "Ejecución remota en nodo Firefox dentro de Selenium Grid"
+    }
+  ]
+}
