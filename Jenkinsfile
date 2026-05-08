@@ -30,6 +30,12 @@ pipeline {
             }
         }
 
+        stage('Validar Selenium Grid desde Windows') {
+            steps {
+                bat 'scripts\\check_grid_windows.bat'
+            }
+        }
+
         stage('Finalizar') {
             steps {
                 echo 'Pipeline ejecutado correctamente en Windows'
