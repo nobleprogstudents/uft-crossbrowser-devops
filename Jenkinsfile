@@ -36,6 +36,12 @@ pipeline {
             }
         }
 
+        stage('Ejecutar UFT') {
+            steps {
+                bat 'scripts\\run_uft_test.bat'
+            }
+        }
+
         stage('Finalizar') {
             steps {
                 echo 'Pipeline ejecutado correctamente en Windows'
